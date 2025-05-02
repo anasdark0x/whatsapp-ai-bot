@@ -21,7 +21,7 @@ function saveConversations() {
 }
 
 // إعداد Hugging Face API
-const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY; // سيتم إضافته في متغيرات البيئة
+const HUGGINGFACE_API_KEY = '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';
 const HUGGINGFACE_API_URL = 'https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill';
 
 client.on('qr', (qr) => {
@@ -46,7 +46,7 @@ client.on('message', async (msg) => {
         conversations[userId].push({ role: 'user', content: userMessage });
 
         // الحفاظ على آخر 5 رسائل فقط لتقليل استهلاك الموارد
-        if (conversations[userId].length > 5) {
+        if (conversations[userId].length > 10000) {
             conversations[userId].shift();
         }
 
@@ -81,4 +81,3 @@ client.on('message', async (msg) => {
 });
 
 client.initialize();
-
